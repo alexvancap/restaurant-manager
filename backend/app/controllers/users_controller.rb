@@ -9,4 +9,21 @@ class UsersController < ApplicationController
             render json: { error: "wrong passwordcd"}
         end
     end
+    state = {
+    name: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: ""
+  };
+    def signup
+        User.create(
+            {username: params[:username],
+            name: params[:name],
+            password: params[:password],
+            email: params[:email],
+            phone: params[:phone]})
+        render json: {message: "success"}
+        
+    end
 end
