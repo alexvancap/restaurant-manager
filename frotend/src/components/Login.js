@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React from "react";
 import Signup from "./Signup";
+=======
+import React from 'react';
+import { history } from '../history';
+>>>>>>> 7ca23903df8b1cd4408f2d7bf759632668f4d42e
 
 export default class Login extends React.Component {
   state = {
@@ -7,6 +12,7 @@ export default class Login extends React.Component {
     password: ""
   };
 
+<<<<<<< HEAD
   handleLogin = e => {
     e.preventDefault();
     fetch("http://localhost:3000/login", {
@@ -23,6 +29,25 @@ export default class Login extends React.Component {
       .then(res => res.json())
       .then(res => localStorage.setItem("token", res.token));
   };
+=======
+    handleLogin = (e) => {
+        e.preventDefault()
+        fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.state.username,
+            password: this.state.password
+          })
+        })
+        .then(res => res.json())
+        .then(res => {
+          history.push('/home')
+          localStorage.setItem("token", res.token)
+        })
+>>>>>>> 7ca23903df8b1cd4408f2d7bf759632668f4d42e
 
   render() {
     return (

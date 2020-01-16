@@ -9,6 +9,7 @@ class UsersController < ApplicationController
             render json: { error: "wrong passwordcd"}
         end
     end
+<<<<<<< HEAD
     state = {
     name: "",
     username: "",
@@ -26,4 +27,23 @@ class UsersController < ApplicationController
         render json: {message: "success"}
         
     end
+=======
+    
+        def authorize
+            p "before"
+            user = self.current_user
+            p "after"
+            p""
+            p""
+            p""
+            p""
+            p user
+            p""
+            p""
+            p""
+            render( json: user, include: [ restaurants: {
+                include: [ :employees ]
+            } ] )
+        end
+>>>>>>> 7ca23903df8b1cd4408f2d7bf759632668f4d42e
 end
