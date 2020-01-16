@@ -1,4 +1,5 @@
 import React from 'react';
+import { history } from '../history';
 
 export default class Login extends React.Component{
     state = {
@@ -12,7 +13,6 @@ export default class Login extends React.Component{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            "Accept": "application/json"
           },
           body: JSON.stringify({
             username: this.state.username,
@@ -20,7 +20,10 @@ export default class Login extends React.Component{
           })
         })
         .then(res => res.json())
-        .then(res => localStorage.setItem("token", res.token))
+        .then(res => {
+          history.push('/home')
+          localStorage.setItem("token", res.token)
+        })
 
     }
 

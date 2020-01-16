@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
         begin
             method, token = request.headers[:Authorization].split(' ')
             if method === 'Bearer'
-                payload, header = JWT.decode(token, 'asdljasldkfjs')
+                payload, header = JWT.decode(token, 'rghejrytkuyluyihkgjhfdsghrt;ouilyktjrhfgdsfadwretrxecrvbijktuy123456fuuukgeorgevyhtyegfvytergfd;[]')
                 User.find(payload["id"])
             end
         rescue
