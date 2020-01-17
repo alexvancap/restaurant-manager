@@ -1,6 +1,5 @@
 import React from "react";
 import Signup from "./Signup";
-import React from 'react';
 import { history } from '../history';
 
 export default class Login extends React.Component {
@@ -23,9 +22,13 @@ export default class Login extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-          history.push('/home')
-          localStorage.setItem("token", res.token)
+          if (res.message === "success"){
+            history.push('/home')
+            localStorage.setItem("token", res.token)
+          }
+         
         })
+      }
 
   render() {
     return (
@@ -43,9 +46,6 @@ export default class Login extends React.Component {
               <form
                 className="ui form"
                 method="POST"
-                onSubmit={e => {
-                  this.handleLogin(e);
-                }}
               >
                 <div className="field">
                   <label>User</label>
@@ -72,6 +72,9 @@ export default class Login extends React.Component {
                 <button
                   className="ui primary labeled icon button"
                   type="submit"
+                  onClick={e => {
+                    this.handleLogin(e);
+                  }}
                 >
                   <i className="unlock alternate icon"></i>
                   Login
@@ -88,6 +91,6 @@ export default class Login extends React.Component {
           </div>
         </div>
       </div>
-    );
+    ); 
   }
 }

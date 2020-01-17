@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from './components/Login'
-import HomeContainer from './components/HomeContainer'
+import HomeContainer from './components/home/HomeContainer'
 import {Router, Route} from 'react-router-dom'
 import { history } from './history';
 
@@ -9,11 +9,10 @@ import { history } from './history';
 export default class App extends React.Component {
   state = {
     selectedPage: 'login',
-    loggedInUser: null,
 }
 
 componentDidMount() {
-    fetch('http://localhost:3000/authorize', {
+    fetch('http://localhost:3000/get_user_by_token', {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
         }
@@ -21,13 +20,11 @@ componentDidMount() {
     .then(res => res.json())
     .then(profile => {
         if (!profile.failed) {
-            history.push('/home')
-            this.setState({
-                loggedInUser: profile,
-            })
+
+        } else {
+          history.push('/login')
         }
     })
-    console.log(history)
 }
 
 selectPage = page => {
@@ -38,7 +35,7 @@ selectPage = page => {
 
   render(){
     return (
-      <div className="App">
+      <div className="App" style={{margin: "0 auto", maxWidth: "960px",}}>
         <Router history={history}>
           <Route exact path={"/login"} component={Login} />
           <Route exact path={"/home"} component={HomeContainer} />
