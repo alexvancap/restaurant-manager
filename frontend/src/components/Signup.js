@@ -12,7 +12,7 @@ export default class Signup extends React.Component {
 
   handleLogin = e => {
     e.preventDefault();
-    fetch("http://localhost:3001/signup", {
+    fetch("http://localhost:3000/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -23,9 +23,9 @@ export default class Signup extends React.Component {
         password: this.state.password,
         phone: this.state.phone,
         email: this.state.email
-      }).then(()=>
+      })
+    }).then(()=>
       history.push("/login"))
-    });
   };
 
   render() {

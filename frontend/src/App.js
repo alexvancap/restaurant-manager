@@ -5,6 +5,7 @@ import EmployeesContainer from './components/home/EmployeesContainer'
 import {Router, Route} from 'react-router-dom'
 import { history } from './history';
 import Signup from './components/Signup'
+import Manage from './components/home/ManageContainer'
 
 
 export default class App extends React.Component {
@@ -13,6 +14,7 @@ export default class App extends React.Component {
 }
 
 componentDidMount() {
+  if(localStorage.token){
     fetch('http://localhost:3000/get_user_by_token', {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
@@ -26,9 +28,11 @@ componentDidMount() {
             loggedInUser: profile
           });
         }
-      });
-    console.log(history);
+      })
+  }else{
+    history.push("/login")
   }
+}
 
   selectPage = page => {
     this.setState({
@@ -40,9 +44,9 @@ componentDidMount() {
     return (
       <div className="App" style={{margin: "0 auto", maxWidth: "960px",}}>
         <Router history={history}>
-          <Route exact path={"/"} component={Login} />
+          <Route exact path={"/"} component={Manage} />
+          <Route exact path={"/home"} component={Manage} />
           <Route exact path={"/login"} component={Login} />
-          <Route exact path={"/home"} component={EmployeesContainer} />
           <Route exact path={"/signup"} component={Signup} />
           <Route exact path={"/employees"} component={EmployeesContainer} />
         </Router>
