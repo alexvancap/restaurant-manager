@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { history } from "../history";
+import Signup from "./Signup";
+
 
 export default class Login extends React.Component {
   state = {
@@ -9,24 +11,28 @@ export default class Login extends React.Component {
     password: ""
   };
 
-  handleLogin = e => {
-    e.preventDefault();
-    fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      })
-    })
-      .then(res => res.json())
-      .then(res => {
-        history.push("/home");
-        localStorage.setItem("token", res.token);
-      });
-  };
+    handleLogin = (e) => {
+        e.preventDefault()
+        fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.state.username,
+            password: this.state.password
+          })
+        })
+        .then(res => res.json())
+        .then(res => {
+          if (res.message === "success"){
+            history.push('/home')
+            localStorage.setItem("token", res.token)
+          }
+         
+        })
+      }
+
   render() {
     return (
       <div className="ui centered grid container">
@@ -43,9 +49,6 @@ export default class Login extends React.Component {
               <form
                 className="ui form"
                 method="POST"
-                onSubmit={e => {
-                  this.handleLogin(e);
-                }}
               >
                 <div className="field">
                   <label>User</label>
@@ -72,6 +75,9 @@ export default class Login extends React.Component {
                 <button
                   className="ui primary labeled icon button"
                   type="submit"
+                  onClick={e => {
+                    this.handleLogin(e);
+                  }}
                 >
                   <i className="unlock alternate icon"></i>
                   Login
@@ -85,6 +91,6 @@ export default class Login extends React.Component {
           </div>
         </div>
       </div>
-    );
+    ); 
   }
 }

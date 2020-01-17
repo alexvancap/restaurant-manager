@@ -1,22 +1,21 @@
-import React from "react";
-import "./App.css";
-import Login from "./components/Login";
-import HomeContainer from "./components/HomeContainer";
-import { Router, Route } from "react-router-dom";
-import { history } from "./history";
-import Signup from "./components/Signup";
+import React from 'react';
+import './App.css';
+import Login from './components/Login'
+import HomeContainer from './components/home/HomeContainer'
+import {Router, Route} from 'react-router-dom'
+import { history } from './history';
+
 
 export default class App extends React.Component {
   state = {
-    selectedPage: "login",
-    loggedInUser: null
-  };
+    selectedPage: 'login',
+}
 
-  componentDidMount() {
-    fetch("http://localhost:3000/authorize", {
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`
-      }
+componentDidMount() {
+    fetch('http://localhost:3000/get_user_by_token', {
+        headers: {
+            Authorization: `Bearer ${localStorage.token}`
+        }
     })
       .then(res => res.json())
       .then(profile => {
@@ -38,7 +37,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{margin: "0 auto", maxWidth: "960px",}}>
         <Router history={history}>
           <Route exact path={"/login"} component={Login} />
           <Route exact path={"/home"} component={HomeContainer} />

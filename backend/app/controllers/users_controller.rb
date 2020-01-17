@@ -2,12 +2,17 @@ class UsersController < ApplicationController
     def login
         user = User.find_by({ username: params[:username] })
         puts params[:password]
-        puts user.authenticate(params[:password])
-        if user.authenticate(params[:password])
-            render json: { user: user, token: JWT.encode( { id: user.id }, 'rghejrytkuyluyihkgjhfdsghrt;ouilyktjrhfgdsfadwretrxecrvbijktuy123456fuuukgeorgevyhtyegfvytergfd;[]') }
+        if (user)
+            puts user.authenticate(params[:password])
+            if user.authenticate(params[:password])
+                render json: { message: "success", user: user, token: JWT.encode( { id: user.id }, 'rghejrytkuyluyihkgjhfdsghrt;ouilyktjrhfgdsfadwretrxecrvbijktuy123456fuuukgeorgevyhtyegfvytergfd;[]') }
+            else
+                render json: { message: "wrong passwordd"}
+            end
         else
-            render json: { error: "wrong passwordcd"}
+            render json: {message: "user not found"}
         end
+        
     end
     def signup
         User.create(
@@ -18,5 +23,12 @@ class UsersController < ApplicationController
             phone: params[:phone]})
         render json: {message: "success"}
         
+    end
+    
+    def get_user_by_token
+        user = self.current_user
+            render( json: user, include: [ restaurants: {
+                include: [ :employees ]
+        } ] )
     end
 end
