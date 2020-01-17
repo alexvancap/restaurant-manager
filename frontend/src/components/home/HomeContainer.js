@@ -18,7 +18,6 @@ export default class HomeContainer extends React.Component{
         }).then(res => res.json())
         .then(res => {
             this.setState({user: res, rendered: true})
-            console.log(res)
         })
     }
     render(){

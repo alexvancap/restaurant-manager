@@ -4,6 +4,7 @@ import Login from './components/Login'
 import HomeContainer from './components/home/HomeContainer'
 import {Router, Route} from 'react-router-dom'
 import { history } from './history';
+import Signup from './components/Signup'
 
 
 export default class App extends React.Component {
@@ -39,6 +40,7 @@ componentDidMount() {
     return (
       <div className="App" style={{margin: "0 auto", maxWidth: "960px",}}>
         <Router history={history}>
+          <Route exact path={"/"} component={Login} />
           <Route exact path={"/login"} component={Login} />
           <Route exact path={"/home"} component={HomeContainer} />
           <Route exact path={"/signup"} component={Signup} />
