@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from './components/Login'
-import HomeContainer from './components/home/HomeContainer'
+import EmployeesContainer from './components/home/EmployeesContainer'
 import {Router, Route} from 'react-router-dom'
 import { history } from './history';
 import Signup from './components/Signup'
@@ -42,8 +42,9 @@ componentDidMount() {
         <Router history={history}>
           <Route exact path={"/"} component={Login} />
           <Route exact path={"/login"} component={Login} />
-          <Route exact path={"/home"} component={HomeContainer} />
+          <Route exact path={"/home"} component={EmployeesContainer} />
           <Route exact path={"/signup"} component={Signup} />
+          <Route exact path={"/employees"} component={EmployeesContainer} />
         </Router>
       </div>
     );
