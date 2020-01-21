@@ -1,12 +1,12 @@
 import React from 'react';
 import { history } from '../../history'
-import EmployeeCard from './EmployeeCard'
 import RestaurantCard from './RestaurantCard';
+import AddRestaurant from './AddRestaurant';
 
 export default class ManageContainer extends React.Component{
     state={
         loggedInUser: {
-            restaurants: []
+            restaurants: [],
         }
     }
 
@@ -32,7 +32,15 @@ export default class ManageContainer extends React.Component{
 
     render(){
         return(
-            this.state.loggedInUser.restaurants.map(restaurant => (<RestaurantCard restaurant={restaurant}/>))
+            <div className="manage-div">
+                {this.state.loggedInUser.restaurants.map(restaurant => 
+                    (<RestaurantCard 
+                        key={restaurant.id} 
+                        restaurant={restaurant} 
+                    />)
+                )}
+                <AddRestaurant />
+            </div>
         )
     }
 }

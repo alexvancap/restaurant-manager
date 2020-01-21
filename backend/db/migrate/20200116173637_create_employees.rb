@@ -5,7 +5,6 @@ class CreateEmployees < ActiveRecord::Migration[6.0]
       t.string(:email)
       t.string(:phone)
       t.string(:role)
-      t.integer(:restaurant_id)
     end
   end
 end

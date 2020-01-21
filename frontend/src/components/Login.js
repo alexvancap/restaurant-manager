@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import { history } from "../history";
-import Signup from "./Signup";
 
 
 export default class Login extends React.Component {
@@ -26,8 +24,8 @@ export default class Login extends React.Component {
         .then(res => res.json())
         .then(res => {
           if (res.message === "success"){
-            history.push('/home')
             localStorage.setItem("token", res.token)
+            history.push('/home')
           }
          
         })

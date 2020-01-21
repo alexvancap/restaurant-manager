@@ -1,5 +1,20 @@
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
 .App {
+  margin: 0 auto !important;
   text-align: center;
+}
+#root{
+  margin: 0 auto !important;
+  padding: 0 !important;
 }
 
 .App-logo {
@@ -36,3 +51,94 @@
     transform: rotate(360deg);
   }
 }
+
+.manage-div{
+  background-color: rgba(37, 105, 232, 0.089);
+  height: 800px;
+}
+
+.restaurant-card{
+  max-width: 400px;
+  padding: 10px 0 10px 10px;
+  background-color: rgba(37, 105, 232, 0.089);
+  border-radius: 10px;
+  margin: 0 auto
+}
+
+.restaurant-title{
+  margin-bottom: 5px !important;
+}
+
+.restaurant-content{
+  position: relative;
+  top: 5px;
+  right: 5px;
+}
+
+.custom-button{
+  cursor: pointer;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  border-radius: 5px;
+  color: black; 
+  border: 2px solid rgba(41, 169, 255, 0.411);
+  outline: none;
+}
+
+.custom-button:hover{
+  background-color: rgba(41, 169, 255, 0.767);
+  color: white;
+}
+
+.restaurant-buttons{
+  margin-top: 10px !important
+}
+
+
+#add-restaurant{
+  margin-top: 25px
+}
+
+#add-restaurant:hover{
+  color:rgb(41, 169, 255);
+  cursor: pointer;
+}
+
+#calendar{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-item{
+  max-width: 150px;
+  float: left;
+}
+
+
+#manage-restaurant-container{
+  margin-top: 30px;
+  width: 960px;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
 class Employee < ActiveRecord::Base
-    belongs_to :restaurant
-    belongs_to :user, :through => :restaurants
+    has_many :worktimes
+    has_many :restaurants, :through => :worktimes
 end

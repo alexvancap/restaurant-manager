@@ -1,31 +1,48 @@
 import React from 'react'
+import { history } from '../../history'
 
 export default class RestaurantCard extends React.Component{
 
+    getNumOfEmployees = () => {
+        let count = 0
+        this.props.restaurant.employees.forEach((employee) => count += 1)
+        return count
+    }
+
+    getManager = () => {
+        let manager = ""
+        this.props.restaurant.employees.forEach((employee) => {
+            if(employee.role === "manager") return manager = employee
+        })
+        return manager === "" ? "none" : manager.name
+    }
+
     render(){
         return(
-            <div id="ManageContainer" style={{maxWidth: "450px"}}>
-                <div className="ui divided items" style={{flex: 1}}>
+            <div className="restaurant-card" >
+                <div className="ui divided items">
                     <div className="item">
                         <div className="image">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Whataburger_logo.svg/1200px-Whataburger_logo.svg.png"></img>
+                            <img src={this.props.restaurant.image} alt="restaurant logo"></img>
                         </div>
-                        <div className="content">
-                            <a className="header">WhataBurger</a>
+                        <div className="content restaurant-content" >
+                            <h3 className="header restaurant-title">{this.props.restaurant.name}</h3>
                             <div className="meta">
-                                <span className="cinema" style={{margin: "50px"}}>Union Square 14</span>
+                                <span className="cinema" >{this.props.restaurant.location}</span>
                             </div>
-                            <div className="description" style={{margin: "10px"}}>
-                                <p>llolool</p>
-                                <p>Manager: </p>
+                            <div className="description restaurant-description">
+                                <p>mangager: {this.getManager()}<br />
+                                num of employees: {this.getNumOfEmployees()}<br /> 
+                                revenue: {this.props.restaurant.revenue}$ / month</p>
                             </div>
-                            <div className="extra ui">
-                                <button class="ui primary button">
-                                    Save
+                            <div className="extra ui restaurant-buttons">
+                                <button className="custom-button" onClick={() => {history.push(`/manage/${this.props.restaurant.id}`)}}>
+                                    manage
                                 </button>
-                                <button class="ui red button">
-                                    delete
+                                <button className="custom-button">
+                                    edit
                                 </button>
+                              
                             </div>
                         </div>
                     </div>

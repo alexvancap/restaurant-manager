@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     
     def get_user_by_token
         user = self.current_user
-            render( json: user, include: [ restaurants: {
-                include: [ :employees ]
+        render( json: user, include: [ restaurants: {
+            include: [ :employees ]
         } ] )
     end
 end

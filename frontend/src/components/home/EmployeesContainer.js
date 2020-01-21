@@ -25,7 +25,7 @@ export default class HomeContainer extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div id="mainDiv" style={{maxWidth: "960px", margin: "0 auto"}}>
                 {this.state.user.restaurants.map(restaurant => {
                     return restaurant.employees.map(employee =>
                         <EmployeeCard key={employee.id} employee={employee} restaurant={restaurant} />
