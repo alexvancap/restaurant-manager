@@ -1,5 +1,5 @@
 import React from "react";
-import ManageRestaurantTable from './ManageRestaurantTable'
+import { ManageRestaurantTable } from './ManageRestaurantTable'
 import Calendar from '../Calendar'
 
 export default class ManageRestaurant extends React.Component{

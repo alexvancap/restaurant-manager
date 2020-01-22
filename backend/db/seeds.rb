@@ -12,7 +12,7 @@ Worktime.destroy_all
 
 alex = User.create({username: "a", name: "Alexander van Cappellen", email: "alexvancap@gmail.com", phone: "123456789", password: "a"})
 
-ihop = Restaurant.create({name: "Ihop", revenue: "30000", user: alex, location: "4369, Westheimer Road, Houston Texas", image: "https://i.dlpng.com/static/png/4729064-ihop-logo-png-88-images-in-collection-page-1-ihop-png-260_260_preview.png"})
+ihop = Restaurant.create({name: "Ihop", revenue: "30000", user: alex, location: "4369, Westheimer Road, Houston Texas", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFuvFOchbebbHPuyGUS0533Mm7oX2_xia48dCSOlHaW0w35HRYpg&s"})
 kfc = Restaurant.create({name: "KFC", revenue: "40000", user: alex, location: "4369, Kirby drive, Houston Texas", image: "https://i.pinimg.com/474x/23/e6/64/23e664116abe4788c7d8750ab9379b5f--restaurant-logos-fast-food-restaurant.jpg"})
 
 bob = Employee.create({name: "Bob", email: "bob@alex.com", phone: "123456789", role: "manager"})
