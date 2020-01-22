@@ -9,24 +9,7 @@ class RestaurantsController < ApplicationController
     def update
         self.current_user
         restaurant = Restaurant.find(params[:id])
-        p ""
-        p ""
-        p ""
-        p params
-        p ""
-        p ""
-        p ""
-        p ""
         restaurant.update({name: params[:name], image: params[:image], location: params[:location], revenue: params[:revenue]})
-        p ""
-        p ""
-        p ""
-        p ""
-        p ""
-        p ""
-        p ""
-        p ""
-        p ""
         render :json => restaurant
     end
 end

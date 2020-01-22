@@ -133,6 +133,17 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
   width: 960px;
 }
 
+#add-table-button{
+  position: relative;
+  top: 45px;
+  left: 35%;
+  z-index: 2;
+}
+
+#add-table-form{
+  
+}
+
 
 
 

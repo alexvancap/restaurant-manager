@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_005338) do
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.string "role"
+    t.string "mainRole"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_005338) do
   end
 
   create_table "worktimes", force: :cascade do |t|
+    t.string "role"
     t.datetime "startTime"
     t.datetime "endTime"
     t.integer "employee_id"

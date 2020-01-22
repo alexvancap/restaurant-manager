@@ -65,14 +65,6 @@ export default class RestaurantCard extends React.Component{
         return count
     }
 
-    getManager = () => {
-        let manager = ""
-        this.props.restaurant.employees.forEach((employee) => {
-            if(employee.role === "manager") return manager = employee
-        })
-        return manager === "" ? "none" : manager.name
-    }
-
     render(){
         const { open, size } = this.state
         return(
@@ -88,15 +80,14 @@ export default class RestaurantCard extends React.Component{
                                 <span className="cinema" >{this.state.location}</span>
                             </div>
                             <div className="description restaurant-description">
-                                <p>mangager: {this.getManager()}<br />
-                                num of employees: {this.getNumOfEmployees()}<br /> 
+                                <p>num of employees: {this.getNumOfEmployees()}<br /> 
                                 revenue: {this.state.revenue}$ / month</p>
                             </div>
                             <div className="extra ui restaurant-buttons">
                                 <button className="custom-button" onClick={() => {history.push(`/manage/${this.props.restaurant.id}`)}}>
                                     manage
                                 </button>
-                                <button className="custom-button" onClick={() => this.setState({open: true})}>
+                                <button className="custom-button" onClick={this.show('large')}>
                                     edit
                                 </button>
                               

@@ -2,20 +2,6 @@ import React from "react";
 
 export const ManageRestaurantTable = (props) => {
 
-    const checkWorkDate = (worktime) => {
-
-        let startTime = new Date(worktime.startTime)
-        let endTime = new Date(worktime.endTime)
-        let date = new Date(props.date)
-
-        if((startTime.getDate() === date.getDate() + 1) && (endTime.getDate() === date.getDate() + 1)){
-            if(worktime.employee.role === props.scheme.table){
-                return worktime.employee.name
-                  
-            }
-        }
-    }
-
     return(
         <div className="manage-div ui center aligned three column grid">
             <div className="row">
@@ -30,7 +16,7 @@ export const ManageRestaurantTable = (props) => {
                             {props.scheme.table}
                             <div className="item">
                                {props.worktimes.map(worktime =>{
-                                   return (<p>{checkWorkDate(worktime)}</p>)
+                                   return (<p>{props.checkWorkDate(worktime, props.scheme.table)}</p>)
                                })}
                             </div>
                         </div>
