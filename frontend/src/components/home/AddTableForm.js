@@ -12,20 +12,20 @@ export default class AddTableForm extends React.Component {
         console.log(this.props)
     }
 
-    componentDidMount(){
-        this.setState({
-            // FILTERS EMPLOYEES WHO ARE WORKING TODAY
-            // .filter(worktime => {
-            //     return this.props.checkWorkDate(worktime) !== false
-            // }).
-            employeesToSelect: this.props.worktimes.map(worktime => {
-                return {
-                    key: worktime.employee.id,
-                    text: worktime.employee.name,
-                    value: worktime.employee.id
-                }
-            })})
-     }
+    // componentDidMount(){
+    //     this.setState({
+    //         // FILTERS EMPLOYEES WHO ARE WORKING TODAY
+    //         // .filter(worktime => {
+    //         //     return this.props.checkWorkDate(worktime) !== false
+    //         // }).
+    //         employeesToSelect: this.props.worktimes.map(worktime => {
+    //             return {
+    //                 key: worktime.employee.id,
+    //                 text: worktime.employee.name,
+    //                 value: worktime.employee.id
+    //             }
+    //         })})
+    //  }
 
     render(){
         return(
@@ -43,7 +43,7 @@ export default class AddTableForm extends React.Component {
                     />
                 </Form.Group>
                 <Form.Group>
-                    <Label key="ui small label" size="small">
+                    {/* <Label key="ui small label" size="small">
                         select employees
                     </Label>
                     <Dropdown
@@ -53,7 +53,7 @@ export default class AddTableForm extends React.Component {
                         fluid
                         selection
                         options={this.state.employeesToSelect}
-                    />
+                    /> */}
                 </Form.Group>
             </Form>
         )

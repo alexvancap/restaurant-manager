@@ -13,7 +13,6 @@ import Navbar from './components/Navbar'
 export default class App extends React.Component {
 
 componentDidMount() {
-  if(localStorage.token){
     fetch('http://localhost:3000/get_user_by_token', {
         headers: {
             Authorization: `Bearer ${localStorage.token}`
@@ -26,11 +25,10 @@ componentDidMount() {
           this.setState({
             loggedInUser: profile
           });
+        }else{
+          history.push("/login")
         }
       })
-  }else{
-    history.push("/login")
-  }
 }
 
   selectPage = page => {
