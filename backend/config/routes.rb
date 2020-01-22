@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   post('/signup', { to: 'users#signup'})
   get('/get_user_by_token', { to: 'users#get_user_by_token'})
   get('/get_restaurant/:id', { to: 'restaurants#get_restaurant'})
+  post('/update_restaurant/:id', { to: 'restaurants#update'})
 end

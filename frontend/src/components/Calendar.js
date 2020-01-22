@@ -31,6 +31,7 @@ export default class Calendar extends React.Component {
                 <div className="calendar-item">
                     <DateInput
                         name="date"
+                        dateFormat="YYYY-MM-DD"
                         placeholder="Date"
                         closable={true}
                         value={this.state.date}

@@ -3,7 +3,6 @@ class UsersController < ApplicationController
         user = User.find_by({ username: params[:username] })
         puts params[:password]
         if (user)
-            puts user.authenticate(params[:password])
             if user.authenticate(params[:password])
                 render json: { message: "success", user: user, token: JWT.encode( { id: user.id }, 'rghejrytkuyluyihkgjhfdsghrt;ouilyktjrhfgdsfadwretrxecrvbijktuy123456fuuukgeorgevyhtyegfvytergfd;[]') }
             else

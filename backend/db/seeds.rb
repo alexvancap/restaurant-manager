@@ -19,4 +19,6 @@ bob = Employee.create({name: "Bob", email: "bob@alex.com", phone: "123456789", r
 bobby = Employee.create({name: "Bobby", email: "bobby@alex.com", phone: "123456789", role: "manager"})
 
 
-wt1 = Worktime.create({startTime: "2020-1-10 09:12:00", endTime: "2020-1-10 20:1:00", employee: bob, restaurant: ihop})
+wt1 = Worktime.create({startTime: "2020-1-21 09:12:00", endTime: "2020-1-21 20:1:21", employee: bob, restaurant: ihop})
+
+scheme1 = Scheme.create({table: "manager", restaurant: ihop})

@@ -10,6 +10,14 @@ export default class ManageContainer extends React.Component{
         }
     }
 
+    handleAddRestaurant = (restaurant) => {
+        this.setState({
+            loggedInUser: {
+                restaurants: [...this.state.loggedInUser.restaurants, restaurant]
+            }
+        })
+    }
+
     componentDidMount() {
         if(localStorage.token){
           fetch('http://localhost:3000/get_user_by_token', {
@@ -36,7 +44,8 @@ export default class ManageContainer extends React.Component{
                 {this.state.loggedInUser.restaurants.map(restaurant => 
                     (<RestaurantCard 
                         key={restaurant.id} 
-                        restaurant={restaurant} 
+                        restaurant={restaurant}
+                        handleEditRestaurant={this.handleEditRestaurant}
                     />)
                 )}
                 <AddRestaurant />

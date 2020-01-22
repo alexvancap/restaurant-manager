@@ -4,15 +4,17 @@ import Calendar from '../Calendar'
 
 export default class ManageRestaurant extends React.Component{
   
-    getCurrentHours = () => {
-        d = new date();
-        return d.getHours()
+    getCurrentDate = () => {
+        const d = new Date();
+        return d.getDate()
     }
     state={
         restaurant: {
-            schemes: []
+            employees: [],
+            schemes: [],
+            
         },
-        date: new Date(),
+        date: this.getCurrentDate(),
         time: null
     }
     
@@ -20,17 +22,19 @@ export default class ManageRestaurant extends React.Component{
         fetch(`http://localhost:3000/get_restaurant/${this.props.match.params.id}`)
         .then(res => res.json())
         .then(res => this.setState({restaurant: res}))
-        console.log(this.state)
     }
 
     handleCalendar = (name, value) => {
         if (this.state.hasOwnProperty(name)) {
-          this.setState({ [name]: value })
+            if (value !== "" && value !== "Invalid Date"){
+                const date = new Date(value)
+                this.setState({ [name]: value })
+            }
+
         }
     }
 
     checkEmployeeWorkTime = () => {
-        this.state.date
     }
 
     render(){
@@ -38,7 +42,13 @@ export default class ManageRestaurant extends React.Component{
             <div id="manage-restaurant-container">
                 <Calendar handleCalendar={this.handleCalendar}/>
                 {this.state.restaurant.schemes.map(scheme => (
-                    <ManageRestaurantTable key={scheme.id} scheme={scheme}/>
+                    <ManageRestaurantTable 
+                    key={scheme.id} 
+                    scheme={scheme} 
+                    worktimes={this.state.restaurant.worktimes}
+                    date={this.state.date}
+                    time={this.state.time}
+                />
                 ))}
             </div>
         )
