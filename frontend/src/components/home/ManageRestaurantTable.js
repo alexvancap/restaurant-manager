@@ -14,39 +14,50 @@ export class ManageRestaurantTable extends React.Component {
             selectedEmployees: [],
             selectedStartTime: "",
             selectedEndTime: "",
-        }
+        },
+        newemployeesToSelect: []
     }
 
     ///////////////////////change startDate to the day that is selected
 
 
-    removeDuplicates = (array, key) => {
-        let newArray = []
-        return array.filter(item => {
-            if(newArray.includes(item.key)){
-                return false
-            }else{
-                newArray.push(item.key)
-                return true
-            }
-        })
-    }
+    // removeDuplicates = (array, key) => {
+    //     let newArray = []
+    //     return array.filter(item => {
+    //         if(newArray.includes(item)){
+    //             return false
+    //         }else{
+    //             newArray.push(item)
+    //             return true
+    //         }
+    //     })
+    // }
    
     
+    
     componentDidMount(){
-        const uniqueArray = this.removeDuplicates(this.props.worktimes, 'id')
 
+        fetch(`http://localhost:3000/get_employees/1`)
+        .then(res => res.json())
+        .then(res => {
+    
+        
+        console.log(res)
         this.setState({
             addUser: { ...this.state.addUser,
-                employeesToSelect: uniqueArray.map(worktime => {
+                employeesToSelect: res.map(employee => {
                     return {
-                        key: worktime.employee.id,
-                        text: worktime.employee.name,
-                        value: worktime.employee.id
+                        key: employee.id,
+                        text: employee.name,
+                        value: employee.id
                     }
                 })
             }
         })
+    
+        })
+
+       
     }
 
     handleAddUser = () => {
@@ -66,6 +77,10 @@ export class ManageRestaurantTable extends React.Component {
         })
         .then(res => res.json())
         .then(profile => {
+
+
+
+            ////////////////////////////////////////////////
             console.log(profile)
         })
     }

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post('/create_restaurant/:user_id', {to: 'restaurants#create'})
   post('/add_employee', {to: 'employees#create'})
   delete('/delete_employee/:employee', {to: 'employees#delete'})
+  get('/get_employees/:id',{to: 'employees#get_employees'} )
 end

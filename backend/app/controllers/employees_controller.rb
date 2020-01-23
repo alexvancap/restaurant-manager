@@ -9,4 +9,8 @@ class EmployeesController < ApplicationController
     render json: employee
   end
 
+  def get_employees
+    render json: Employee.all
+  end
+
 end

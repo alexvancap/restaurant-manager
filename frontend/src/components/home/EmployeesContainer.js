@@ -11,7 +11,8 @@ export default class HomeContainer extends React.Component {
     employeeEmail: "",
     employeePhone: "",
     employeeRole: "",
-    rendered: false
+    rendered: false,
+    allEmployees: []
   };
 
   componentDidMount() {
@@ -23,8 +24,14 @@ export default class HomeContainer extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          this.setState({ user: res, rendered: true });
-        });
+          this.setState({ user: res, rendered: true })
+
+          fetch(`http://localhost:3000/get_employees/${res.id}`)
+          .then(res => res.json())
+          .then(res => {
+            this.setState({allEmployees: res})
+          });
+        })
     }
   }
 
@@ -87,15 +94,13 @@ export default class HomeContainer extends React.Component {
           setEmployeeRole={this.setEmployeeRole}
           onSubmit={this.handleSubmit}
         />
-        {this.state.user.restaurants.map(restaurant => {
-          return restaurant.employees.map(employee => (
+        {this.state.allEmployees.map(employee => (
             <EmployeeCard
               key={employee.id}
               employee={employee}
-              restaurant={restaurant}
+              restaurant={this.state.restaurants}
             />
-          ));
-        })}
+        ))}
       </div>
     );
   }
