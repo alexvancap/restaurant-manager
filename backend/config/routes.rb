@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get('/get_user_by_token', { to: 'users#get_user_by_token'})
   get('/get_restaurant/:id', { to: 'restaurants#get_restaurant'})
   post('/update_restaurant/:id', { to: 'restaurants#update'})
+  post('/add_employee', {to: 'employees#create'})
+  delete('/delete_employee/:employee', {to: 'employees#delete'})
 end
