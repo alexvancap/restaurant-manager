@@ -2,15 +2,15 @@ import React from 'react'
 import { Form, Icon} from 'semantic-ui-react'
 import {
     DateInput,
-    TimeInput
-  } from '../../node_modules/semantic-ui-calendar-react/';
+    // TimeInput
+  } from 'semantic-ui-calendar-react';
 
 export default class Calendar extends React.Component {
     constructor(props) {
       super(props);
    
       this.state = {
-        date: '',
+        date: new Date(),
         time: '',
         dateTime: '',
         datesRange: ''
@@ -34,14 +34,14 @@ export default class Calendar extends React.Component {
                         dateFormat="YYYY-MM-DD"
                         placeholder="Date"
                         closable={true}
-                        value={this.state.date}
+                        value={`${this.state.date}`}
                         iconPosition="left"
                         onChange={this.handleChange}
                         clearable
                         clearIcon={<Icon name="remove" color="red" />}
                     />
                 </div>
-                <div className="calendar-item">
+                {/* <div className="calendar-item">
                     <TimeInput
                         name="time"
                         placeholder="Time"
@@ -52,7 +52,7 @@ export default class Calendar extends React.Component {
                         clearable
                         clearIcon={<Icon name="remove" color="red" />}
                     />
-                </div>
+                </div> */}
             </Form>
         </div>
       );

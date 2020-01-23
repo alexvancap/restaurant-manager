@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         end
         
     end
+    
     def signup
         User.create(
             {username: params[:username],
