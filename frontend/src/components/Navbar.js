@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { Router } from "react-router-dom";
 import { history } from "../history";
 export default class App extends React.Component {
+  logout() {
+        localStorage.clear();
+        window.location.href = '/';
+    }
   render() {
     return (
 
@@ -13,7 +17,8 @@ export default class App extends React.Component {
           </div>
           <Link className="item" to="/home">Home</Link>
           <Link className="item" to="/employees">Employees</Link>
-          <Link className="item" to="/home">Settings</Link>
+          <Link className="item" to="/settings">My Information</Link>
+          <Link className="item" onClick={e => this.logout()} to="/login">LogOut</Link>
         </Router>
       </div>
 

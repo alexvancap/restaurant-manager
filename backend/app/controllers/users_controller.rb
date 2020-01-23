@@ -13,16 +13,33 @@ class UsersController < ApplicationController
         end
         
     end
+    
     def signup
         User.create(
             {username: params[:username],
             name: params[:name],
             password: params[:password],
             email: params[:email],
-            phone: params[:phone]})
+            phone: params[:phone],
+            dob: params[:dob],
+            country: params[:country]
+        })
         render json: {message: "success"}
-        
     end
+     def edit
+        user = User.find_by({id: params[:id]})
+            user.update(
+            {username: params[:username],
+            name: params[:name],
+            password: params[:password],
+            email: params[:email],
+            phone: params[:phone],
+            dob: params[:dob],
+            country: params[:country]
+        })
+        render json: {message: "success"}
+     end
+            
     
     def get_user_by_token
         user = self.current_user
@@ -30,4 +47,5 @@ class UsersController < ApplicationController
             include: [ :employees ]
         } ] )
     end
+
 end

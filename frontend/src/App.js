@@ -8,6 +8,8 @@ import Signup from './components/Signup'
 import Manage from './components/home/ManageContainer'
 import ManageRestaurant from './components/home/ManageRestaurant';
 import Navbar from './components/Navbar'
+import Settings from './components/settings/Settings'
+import Edit from './components/settings/Edit'
 
 
 export default class App extends React.Component {
@@ -39,7 +41,7 @@ componentDidMount() {
 
   render() {
     return (
-      <div className="App" style={{margin: "0 auto", maxWidth: "960px",}}>
+      <div className="App" style={{ margin: "0 auto", maxWidth: "960px" }}>
         <Navbar />
         <Router history={history}>
           <Route exact path={"/"} component={Manage} />
@@ -48,6 +50,8 @@ componentDidMount() {
           <Route exact path={"/login"} component={Login} />
           <Route exact path={"/signup"} component={Signup} />
           <Route exact path={"/employees"} component={EmployeesContainer} />
+          <Route exact path={"/settings"} component={Settings} />
+          <Route exact path={"/edit"} component={Edit} />
         </Router>
       </div>
     );

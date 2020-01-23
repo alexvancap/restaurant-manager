@@ -35,13 +35,6 @@ export default class Login extends React.Component {
     return (
       <div className="ui centered grid container">
         <div className="nine wide column">
-          <div className="ui icon warning message">
-            <i className="lock icon"></i>
-            <div className="content">
-              <div className="header">Login failed!</div>
-              <p>You might have misspelled your username or password!</p>
-            </div>
-          </div>
           <div className="ui fluid card">
             <div className="content">
               <form
