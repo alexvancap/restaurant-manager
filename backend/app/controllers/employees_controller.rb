@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
-  def delete_employee
-    employee = employee.find_by(params[:employee])
+  def delete
+    employee = Employee.find_by(id: params[:id])
     employee.destroy
   end
 

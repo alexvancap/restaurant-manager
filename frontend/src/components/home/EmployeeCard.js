@@ -2,9 +2,7 @@ import React from "react";
 
 export default class EmployeeCard extends React.Component {
   handleEmployee = () => {
-    fetch(`http://localhost:3000/delete_employee/${this.props.employee.id}`, {
-      method: "DELETE"
-    });
+    this.props.fire(this.props.employee);
   };
   render() {
     return (
@@ -24,14 +22,13 @@ export default class EmployeeCard extends React.Component {
               email: ${this.props.employee.email} \n
             `}
           </div>
-          <form onClick={this.handleEmployee}>
+          <div onClick={() => this.handleEmployee()}>
             <button>Fire!</button>
-          </form>
+          </div>
         </div>
         <div className="extra content">
           <a href="/#">
             <i className="user icon"></i>
-            22 Friends
           </a>
         </div>
       </div>
