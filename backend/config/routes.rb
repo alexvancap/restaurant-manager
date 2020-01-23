@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   post('/add_worktimes', {to: 'worktimes#create'})
   post('/create_restaurant/:user_id', {to: 'restaurants#create'})
   post('/add_employee', {to: 'employees#create'})
-  delete('/delete_employee/:employee', {to: 'employees#delete'})
+  delete('/delete_employee/:id', {to: 'employees#delete'})
   get('/get_employees/:id',{to: 'employees#get_employees'} )
 end

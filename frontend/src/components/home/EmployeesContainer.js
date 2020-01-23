@@ -24,16 +24,27 @@ export default class HomeContainer extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          this.setState({ user: res, rendered: true })
+          this.setState({ user: res, rendered: true });
 
           fetch(`http://localhost:3000/get_employees/${res.id}`)
-          .then(res => res.json())
-          .then(res => {
-            this.setState({allEmployees: res})
-          });
-        })
+            .then(res => res.json())
+            .then(res => {
+              this.setState({ allEmployees: res });
+            });
+        });
     }
   }
+
+  fire = firedEmployee => {
+    fetch(`http://localhost:3000/delete_employee/${firedEmployee.id}`, {
+      method: "DELETE"
+    });
+    this.setState({
+      allEmployees: this.state.allEmployees.filter(
+        employee => employee != firedEmployee
+      )
+    });
+  };
 
   setEmployeeName = event => {
     this.setState({
@@ -95,11 +106,12 @@ export default class HomeContainer extends React.Component {
           onSubmit={this.handleSubmit}
         />
         {this.state.allEmployees.map(employee => (
-            <EmployeeCard
-              key={employee.id}
-              employee={employee}
-              restaurant={this.state.restaurants}
-            />
+          <EmployeeCard
+            key={employee.id}
+            employee={employee}
+            restaurant={this.state.restaurants}
+            fire={this.fire}
+          />
         ))}
       </div>
     );
