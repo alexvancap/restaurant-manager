@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   post('/update_restaurant/:id', { to: 'restaurants#update'})
   post('/add_worktimes', {to: 'worktimes#create'})
   post('/create_restaurant/:user_id', {to: 'restaurants#create'})
+  post('/add_employee', {to: 'employees#create'})
+  delete('/delete_employee/:employee', {to: 'employees#delete'})
 end
