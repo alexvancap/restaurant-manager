@@ -1,28 +1,39 @@
 import React from "react";
 import { ManageRestaurantTable } from './ManageRestaurantTable'
-import Calendar from '../Calendar'
-import { Modal, Button} from 'semantic-ui-react'
+import Calendar from './Calendar'
+import { GenerateModal } from "./GenerateModal";
 import AddTableForm from "./AddTableForm";
 
 export default class ManageRestaurant extends React.Component{
   
     getCurrentDate = () => {
         const d = new Date();
-        return d.getDate()
+        const month = d.getMonth() + 1
+        const newDay = d.getDate() < 10 
+        ? "0" + d.getDate()
+        : d.getDate()
+        const newMonth = month < 10 
+        ? "0" + month
+        : d.getMonth() + 1
+        return `${d.getFullYear()}-${newMonth}-${newDay}`
     }
     state={
         restaurant: {
             employees: [],
             schemes: [],
             modalSize: "",
-            worktimes: []
+            worktimes: [],
+            id: null
         },
-        openModal: false,
-        date: this.getCurrentDate(),
+        openAddFormModal: false,
+        openAddUserModal: false,
+        date: "",
         time: null
     }
     
     componentDidMount(){
+        this.setState({date: this.getCurrentDate()})
+
         fetch(`http://localhost:3000/get_restaurant/${this.props.match.params.id}`)
         .then(res => res.json())
         .then(res => this.setState({restaurant: res}))
@@ -31,26 +42,23 @@ export default class ManageRestaurant extends React.Component{
     handleCalendar = (name, value) => {
         if (this.state.hasOwnProperty(name)) {
             if (value !== "" && value !== "Invalid Date"){
-                const date = new Date(value)
                 this.setState({ [name]: value })
             }
 
         }
     }
 
-    showModal = (modalSize) => () => this.setState({ modalSize, openModal: true })
-    closeModal = () => this.setState({ openModal: false })
-
-    handleAddTableForm = () => {
-        
-    }
+    showAddFormModal = (modalSize) => () => this.setState({ modalSize, openAddFormModal: true })
+    closeAddFormModal = () => this.setState({ openAddFormModal: false })
+    showAddUserModal = (modalSize) => () => this.setState({ modalSize, openAddUserModal: true })
+    closeAddUserModal = () => this.setState({ openAddFormModal: false })
 
     checkWorkDate = (worktime, role = "") => {
         let startTime = new Date(worktime.startTime)
         let endTime = new Date(worktime.endTime)
         let date = new Date(this.state.date)
 
-        if((startTime.getDate() === date.getDate() + 1) && (endTime.getDate() === date.getDate() + 1)){
+        if((startTime.getDate() === date.getDate()) && (endTime.getDate() === date.getDate())){
             if(role !== ""){
                 if(worktime.employee.role === role){
                     return worktime.employee.name
@@ -62,6 +70,8 @@ export default class ManageRestaurant extends React.Component{
         }
     }
 
+    
+
     render(){
         return(
             <div id="manage-restaurant-container">
@@ -69,7 +79,7 @@ export default class ManageRestaurant extends React.Component{
                 <button 
                     className="custom-button" 
                     id="add-table-button"
-                    onClick={this.showModal('tiny')}
+                    onClick={this.showAddFormModal('tiny')}
                 >
                     <i aria-hidden="true" className="plus icon"></i>
                     Add table
@@ -82,33 +92,22 @@ export default class ManageRestaurant extends React.Component{
                     date={this.state.date}
                     time={this.state.time}
                     checkWorkDate={this.checkWorkDate}
+                    restaurantId={this.state.restaurant.id}
                 />
                 ))}
 
-                <Modal open={this.state.openModal} size={this.state.modalSize} onClose={this.closeModal}>
-                    <Modal.Header>Add a table</Modal.Header>
-                    <Modal.Content>
-                        <AddTableForm 
-                            handleAddTableForm={this.handleAddTableForm} 
-                            checkWorkDate={this.checkWorkDate}
-                            worktimes={this.state.restaurant.worktimes}
-                        />
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button
-                            positive
-                            icon='checkmark'
-                            labelPosition='left'
-                            content='Create'
-                        />
-                        <Button 
-                            onClick={this.closeModal}
-                            negative
-                        >
-                            No
-                        </Button>
-                    </Modal.Actions>
-                </Modal>
+                <GenerateModal 
+                    openModal={this.state.openAddFormModal}
+                    modalSize={this.state.modalSize}
+                    closeModal={this.closeAddFormModal}
+                    formView={<AddTableForm />}
+                />
+                <GenerateModal
+                    openModal={this.state.openUserodal}
+                    modalSize={this.state.modalSize}
+                    closeModal={this.closeUserModal}
+                    // formView={<AddUserForm handleAddUserForm={this.handleAddUSerForm} />}
+                />
             </div>
         )
     }

@@ -15,22 +15,22 @@ import Edit from './components/settings/Edit'
 export default class App extends React.Component {
 
 componentDidMount() {
-    fetch('http://localhost:3000/get_user_by_token', {
-        headers: {
-            Authorization: `Bearer ${localStorage.token}`
-        }
-    })
-      .then(res => res.json())
-      .then(profile => {
-        if (!profile.failed) {
-          //  history.push("/home");
-          this.setState({
-            loggedInUser: profile
-          });
-        }else{
-          history.push("/login")
-        }
-      })
+  fetch('http://localhost:3000/get_user_by_token', {
+      headers: {
+          Authorization: `Bearer ${localStorage.token}`
+      }
+  })
+  .then(res => res.json())
+  .then(profile => {
+    if (!profile.failed) {
+      //  history.push("/home");
+      this.setState({
+        loggedInUser: profile
+      });
+    }else{
+      history.push("/login")
+    }
+  })
 }
 
   selectPage = page => {

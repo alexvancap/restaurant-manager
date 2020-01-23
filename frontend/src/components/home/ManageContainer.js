@@ -38,6 +38,13 @@ export default class ManageContainer extends React.Component{
         }
     }
 
+    handleAddRestaurant = (restaurant) => {
+        console.log([...this.state.loggedInUser.restaurants, restaurant])
+        this.setState({loggedInUser: {
+            restaurants: [...this.state.loggedInUser.restaurants, restaurant]
+        }})
+    }
+
     render(){
         return(
             <div className="manage-div">
@@ -48,7 +55,10 @@ export default class ManageContainer extends React.Component{
                         handleEditRestaurant={this.handleEditRestaurant}
                     />)
                 )}
-                <AddRestaurant />
+                <AddRestaurant 
+                    handleAddRestaurant={this.handleAddRestaurant}
+                    loggedInUserId={this.state.loggedInUser.id}
+                />
             </div>
         )
     }

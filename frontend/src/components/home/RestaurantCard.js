@@ -59,11 +59,11 @@ export default class RestaurantCard extends React.Component{
     show = (size) => () => this.setState({ size, open: true })
     close = () => this.setState({ open: false })
 
-    getNumOfEmployees = () => {
-        let count = 0
-        this.props.restaurant.employees.forEach((employee) => count += 1)
-        return count
-    }
+    // getNumOfEmployees = () => {
+    //     let count = 0
+    //     this.props.restaurant.employees.forEach((employee) => count += 1)
+    //     return count
+    // }
 
     render(){
         const { open, size } = this.state
@@ -80,7 +80,8 @@ export default class RestaurantCard extends React.Component{
                                 <span className="cinema" >{this.state.location}</span>
                             </div>
                             <div className="description restaurant-description">
-                                <p>num of employees: {this.getNumOfEmployees()}<br /> 
+                            <p>
+                                {/* num of employees: {this.getNumOfEmployees()}<br />  */}
                                 revenue: {this.state.revenue}$ / month</p>
                             </div>
                             <div className="extra ui restaurant-buttons">
