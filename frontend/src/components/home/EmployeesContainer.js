@@ -25,10 +25,10 @@ export default class HomeContainer extends React.Component {
         .then(res => res.json())
         .then(res => {
           this.setState({ user: res, rendered: true });
-
           fetch(`http://localhost:3000/get_employees/${res.id}`)
             .then(res => res.json())
             .then(res => {
+              console.log(res);
               this.setState({ allEmployees: res });
             });
         });
@@ -84,15 +84,17 @@ export default class HomeContainer extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(res =>
+      .then(res => {
         this.setState({
           user: {
             ...this.state.user,
             restaurants: [...this.state.user.restaurants, { employees: [res] }]
-          }
-          //   user: [...this.state.user.restaurants.employees, res]
-        })
-      );
+          },
+          allEmployees: [...this.state.allEmployees, res]
+        });
+        // console.log(res);
+        // console.log(this.state.allEmployees);
+      });
   };
 
   render() {

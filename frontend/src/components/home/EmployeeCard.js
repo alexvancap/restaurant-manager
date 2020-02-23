@@ -14,9 +14,9 @@ export default class EmployeeCard extends React.Component {
           <a className="header" href="/#">
             {this.props.employee.name}
           </a>
-          <div className="meta">
+          {/* <div className="meta">
             <span className="date">Joined in 2013</span>
-          </div>
+          </div> */}
           <div className="description">
             {`phone: ${this.props.employee.phone} \n
               email: ${this.props.employee.email} \n
